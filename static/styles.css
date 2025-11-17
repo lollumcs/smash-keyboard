@@ -1,0 +1,86 @@
+body {
+  background: #0b0c0f;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-top: 30px;
+  text-shadow:
+    0 0 1.5px #00ff00;
+}
+
+#game {
+  margin-top: 50px;
+}
+
+#combo {
+  font-size: 60px;
+  margin-top: 30px;
+  font-weight: bold;
+  text-shadow:
+    0 0 1.5px #00ff00;
+  transition: transform 0.2s ease;
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+#timer {
+  font-size: 36px;
+  margin-top: 10px;
+  text-shadow:
+    0 0 1.5px #00ff00;
+}
+
+#message {
+  margin-top: 30px;
+  font-size: 28px;
+  min-height: 40px;
+  font-weight: 600;
+  text-shadow:
+    0 0 1.5px #00ff00;
+}
+
+#bestCombo {
+  margin-top: 20px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #00ff00;
+  text-shadow:
+    0 0 1.5px #00ff00;
+}
+
+#startBtn {
+  margin-top: 50px;
+  font-size: 28px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  background: #003300;
+  color: #00ff00;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow:
+    0 0 3px #00ff00,
+    inset 0 0 2px #007700;
+  transition: background 0.3s ease;
+}
+
+#startBtn:hover {
+  background: #005500;
+  box-shadow:
+    0 0 6px #00ff00,
+    inset 0 0 4px #00ff00;
+}
