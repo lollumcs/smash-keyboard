@@ -84,3 +84,13 @@ h1 {
     0 0 6px #00ff00,
     inset 0 0 4px #00ff00;
 }
+
+#endImage {
+  display: none; /* hide by default */
+  max-width: 300px;
+  margin: 30px auto 0 auto;
+  border: 3px solid #00ff00;
+  border-radius: 10px;
+}
+
+

@@ -3,8 +3,9 @@ const timerDisplay = document.getElementById('timer');
 const messageDisplay = document.getElementById('message');
 const bestComboDisplay = document.getElementById('bestCombo');
 const startBtn = document.getElementById('startBtn');
+const endImage = document.getElementById('endImage');
 
-const totalTime = 5; // total game time in seconds
+const totalTime = 3; // total game time in seconds
 let combo = 0;
 let timeLeft = totalTime;
 let timerId = null;
@@ -40,6 +41,8 @@ function startGame() {
   gameActive = true;
   startBtn.style.display = 'none';
 
+  endImage.style.display = 'none'; // hide image on new game start
+
   if (timerId) clearInterval(timerId);
   timerId = setInterval(updateTimer, 50);
 }
@@ -56,6 +59,9 @@ function endGame() {
   } else {
     messageDisplay.textContent = `Time’s up! Your final combo: ${combo} 🔥`;
   }
+
+  // Show the "go away" image when the round ends
+  endImage.style.display = 'block';
 
   startBtn.style.display = 'inline-block';
 }
