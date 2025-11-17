@@ -55,9 +55,9 @@ function endGame() {
     bestCombo = combo;
     localStorage.setItem('bestCombo', bestCombo);
     bestComboDisplay.textContent = `Best Combo: ${bestCombo}`;
-    messageDisplay.textContent = `🔥 NEW RECORD! Your final combo: ${combo} 🔥`;
+    messageDisplay.textContent = `NEW RECORD! Your final combo: ${combo}`;
   } else {
-    messageDisplay.textContent = `Time’s up! Your final combo: ${combo} 🔥`;
+    messageDisplay.textContent = `Time’s up! Your final combo: ${combo}`;
   }
 
   // Show the "go away" image when the round ends
