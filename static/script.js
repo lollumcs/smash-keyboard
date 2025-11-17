@@ -4,8 +4,9 @@ const messageDisplay = document.getElementById('message');
 const bestComboDisplay = document.getElementById('bestCombo');
 const startBtn = document.getElementById('startBtn');
 const endImage = document.getElementById('endImage');
+const clearHighScoreBtn = document.getElementById('clearHighScoreBtn');
 
-const totalTime = 3; // total game time in seconds
+const totalTime = 5; // total game time in seconds
 let combo = 0;
 let timeLeft = totalTime;
 let timerId = null;
@@ -94,6 +95,13 @@ function onKeyPress(event) {
     }
   }
 }
+
+clearHighScoreBtn.addEventListener('click', () => {
+  localStorage.removeItem('bestCombo');
+  bestCombo = 0;
+  bestComboDisplay.textContent = `Best Combo: ${bestCombo}`;
+  messageDisplay.textContent = 'High score cleared! Smash to set a new record!';
+});
 
 startBtn.addEventListener('click', startGame);
 window.addEventListener('keydown', onKeyPress);

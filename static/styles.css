@@ -93,4 +93,29 @@ h1 {
   border-radius: 10px;
 }
 
+#clearHighScoreBtn {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 20px;
+  background: #002200;
+  color: #00ff00;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow:
+    0 0 1.5px #00ff00,
+    inset 0 0 1px #007700;
+  transition: background 0.3s ease;
+  z-index: 1000; /* ensure it’s above other elements */
+}
 
+#clearHighScoreBtn:hover {
+  background: #004400;
+  box-shadow:
+    0 0 3px #00ff00,
+    inset 0 0 2px #00ff00;
+}
