@@ -73,8 +73,16 @@ function endGame() {
     endImage.src = 'static/img/go-away.jpg';  // show go-away.jpg otherwise
   }
 
-  // Show the "go away" image when the round ends
-  endImage.style.display = 'block';
+  // Hide image while loading new source
+  endImage.style.display = 'none';
+
+  // Show image only when fully loaded
+  endImage.onload = () => {
+    setTimeout(() => {
+      endImage.style.display = 'block';
+    }, 20); // 20ms delay before showing the image
+  };
+
   clearHighScoreBtn.style.display = 'inline-block'; // show when game ends
 
   startBtn.style.display = 'inline-block';
