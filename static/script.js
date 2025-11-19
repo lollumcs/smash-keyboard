@@ -41,6 +41,7 @@ function startGame() {
   timerDisplay.textContent = `Time Left: ${timeLeft.toFixed(2)}s`;
   gameActive = true;
   startBtn.style.display = 'none';
+  clearHighScoreBtn.style.display = 'none'; // hide when game starts
 
   endImage.style.display = 'none'; // hide image on new game start
 
@@ -72,6 +73,7 @@ function endGame() {
 
   // Show the "go away" image when the round ends
   endImage.style.display = 'block';
+  clearHighScoreBtn.style.display = 'inline-block'; // show when game ends
 
   startBtn.style.display = 'inline-block';
 
@@ -142,10 +144,10 @@ function onTouchSmash() {
 startBtn.addEventListener('click', startGame);
 window.addEventListener('keydown', onKeyPress);
 
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const isTouchDevice = true; //= 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 const tapZonesContainer = document.getElementById('tapZonesContainer');
-const numZones = 5;
+const numZones = 8;
 const zoneSize = 80; // match CSS width/height
 const padding = 10; // minimum space between zones
 
