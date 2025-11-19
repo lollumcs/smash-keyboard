@@ -46,6 +46,14 @@ function startGame() {
 
   if (timerId) clearInterval(timerId);
   timerId = setInterval(updateTimer, 50);
+
+  // Show tap zones and reposition
+  tapZonesContainer.classList.add('active'); // enable pointer events
+
+  tapZones.forEach((zone, i) => {
+    zone.style.display = 'flex';
+    moveZone(zone, i);
+  });
 }
 
 function endGame() {
@@ -65,6 +73,13 @@ function endGame() {
   endImage.style.display = 'block';
 
   startBtn.style.display = 'inline-block';
+
+  tapZonesContainer.classList.remove('active'); // disable pointer events
+
+  // Hide tap zones
+  tapZones.forEach(zone => {
+    zone.style.display = 'none';
+  });
 }
 
 function onKeyPress(event) {
@@ -121,15 +136,6 @@ function onTouchSmash() {
   // Optional: tiny vibration feedback (safe fallback)
   if (navigator.vibrate) navigator.vibrate(25);
 }
-
-// // Taps anywhere on the screen smash
-// window.addEventListener('pointerdown', (e) => {
-//   // Prevent smashes on UI buttons
-//   if (e.target === startBtn || e.target === clearHighScoreBtn) return;
-//   if (e.target.tagName === "BUTTON") return;
-
-//   onTouchSmash();
-// });
 
 startBtn.addEventListener('click', startGame);
 window.addEventListener('keydown', onKeyPress);
@@ -200,16 +206,17 @@ function moveZone(zone, index) {
 for (let i = 0; i < numZones; i++) {
   const zone = document.createElement('div');
   zone.classList.add('tap-zone');
-  zone.textContent = `Tap ${i + 1}`;
+  zone.textContent = `SMASH ME!`;
   zone.style.position = 'absolute';
   zone.style.width = `${zoneSize}px`;
   zone.style.height = `${zoneSize}px`;
+  zone.style.display = 'none';  // hide initially!
 
   tapZones.push(zone);
   tapZonesContainer.appendChild(zone);
   tapZonesPositions.push(null); // reserve spot
 
-  moveZone(zone, i);
+  // No move here — will move on game start
 
   zone.addEventListener('pointerdown', (e) => {
     e.preventDefault();

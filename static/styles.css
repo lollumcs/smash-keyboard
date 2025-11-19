@@ -142,3 +142,49 @@ h1 {
   background-color: #ff3b2f;
   box-shadow: 0 0 15px #ff3b2fcc;
 }
+
+/* Make the tap zones container fill the entire visible viewport */
+#tapZonesContainer {
+  position: fixed; /* fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw; /* no max width restriction */
+  border: none; /* remove border unless you want it */
+  border-radius: 0;
+  z-index: 10; /* make sure it’s above other elements */
+  /* optional: pointer-events enabled only when game active, can add later */
+}
+
+/* Styles for tap zones */
+.tap-zone {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #ff6f61;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff6f61aa;
+  transition: background-color 0.2s ease;
+}
+
+.tap-zone:active {
+  background-color: #ff3b2f;
+  box-shadow: 0 0 15px #ff3b2fcc;
+}
+
+#tapZonesContainer {
+  pointer-events: none;
+}
+
+#tapZonesContainer.active {
+  pointer-events: auto;
+}
