@@ -119,3 +119,26 @@ h1 {
     0 0 3px #00ff00,
     inset 0 0 2px #00ff00;
 }
+
+.tap-zone {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #ff6f61;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff6f61aa;
+  transition: background-color 0.2s ease;
+}
+
+.tap-zone:active {
+  background-color: #ff3b2f;
+  box-shadow: 0 0 15px #ff3b2fcc;
+}
