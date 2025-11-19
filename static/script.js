@@ -67,8 +67,10 @@ function endGame() {
     localStorage.setItem('bestCombo', bestCombo);
     bestComboDisplay.textContent = `Best Combo: ${bestCombo}`;
     messageDisplay.textContent = `NEW RECORD! Your final combo: ${combo}`;
+    endImage.src = 'static/img/anger.gif';  // show anger.gif on new record
   } else {
     messageDisplay.textContent = `Time’s up! Your final combo: ${combo}`;
+    endImage.src = 'static/img/go-away.jpg';  // show go-away.jpg otherwise
   }
 
   // Show the "go away" image when the round ends
@@ -144,7 +146,7 @@ function onTouchSmash() {
 startBtn.addEventListener('click', startGame);
 window.addEventListener('keydown', onKeyPress);
 
-const isTouchDevice = true; //= 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 const tapZonesContainer = document.getElementById('tapZonesContainer');
 const numZones = 8;
