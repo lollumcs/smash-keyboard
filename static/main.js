@@ -254,72 +254,71 @@ const padding = 10;
 const tapZones = [];
 const tapZonesPositions = [];
 
-if (isTouchDevice) {
-  function getContainerSize() {
-    const rect = tapZonesContainer.getBoundingClientRect();
-    return { width: rect.width, height: rect.height };
-  }
-
-  function isOverlapping(x1, y1, x2, y2) {
-    return !(x1 + zoneSize + padding < x2 ||
-             x2 + zoneSize + padding < x1 ||
-             y1 + zoneSize + padding < y2 ||
-             y2 + zoneSize + padding < y1);
-  }
-
-  function randomPositionAvoidOverlap(index) {
-    const { width, height } = getContainerSize();
-    const maxX = width - zoneSize;
-    const maxY = height - zoneSize;
-
-    let x, y;
-    let attempts = 0;
-
-    do {
-      x = Math.random() * maxX;
-      y = Math.random() * maxY;
-
-      let overlap = false;
-      for (let i = 0; i < tapZonesPositions.length; i++) {
-        if (i === index) continue;
-        const pos = tapZonesPositions[i];
-        if (pos && isOverlapping(x, y, pos.x, pos.y)) {
-          overlap = true;
-          break;
-        }
-      }
-
-      if (!overlap) return { x, y };
-      attempts++;
-    } while (attempts < 200);
-
-    return { x, y };
-  }
-
-  function moveZone(zone, index) {
-    const { x, y } = randomPositionAvoidOverlap(index);
-    zone.style.transform = `translate(${x}px, ${y}px)`;
-    tapZonesPositions[index] = { x, y };
-  }
-
-  for (let i = 0; i < numZones; i++) {
-    const zone = document.createElement('div');
-    zone.classList.add('tap-zone');
-    zone.textContent = `SMASH ME!`;
-    zone.style.position = 'absolute';
-    zone.style.width = `${zoneSize}px`;
-    zone.style.height = `${zoneSize}px`;
-    zone.style.display = 'none';
-
-    tapZones.push(zone);
-    tapZonesContainer.appendChild(zone);
-    tapZonesPositions.push(null);
-
-    zone.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      if (!gameActive) return;
-      onTouchSmash();
-      moveZone(zone, i);
-    });
-  }
+function getContainerSize() {
+  const rect = tapZonesContainer.getBoundingClientRect();
+  return { width: rect.width, height: rect.height };
 }
+
+function isOverlapping(x1, y1, x2, y2) {
+  return !(x1 + zoneSize + padding < x2 ||
+            x2 + zoneSize + padding < x1 ||
+            y1 + zoneSize + padding < y2 ||
+            y2 + zoneSize + padding < y1);
+}
+
+function randomPositionAvoidOverlap(index) {
+  const { width, height } = getContainerSize();
+  const maxX = width - zoneSize;
+  const maxY = height - zoneSize;
+
+  let x, y;
+  let attempts = 0;
+
+  do {
+    x = Math.random() * maxX;
+    y = Math.random() * maxY;
+
+    let overlap = false;
+    for (let i = 0; i < tapZonesPositions.length; i++) {
+      if (i === index) continue;
+      const pos = tapZonesPositions[i];
+      if (pos && isOverlapping(x, y, pos.x, pos.y)) {
+        overlap = true;
+        break;
+      }
+    }
+
+    if (!overlap) return { x, y };
+    attempts++;
+  } while (attempts < 200);
+
+  return { x, y };
+}
+
+function moveZone(zone, index) {
+  const { x, y } = randomPositionAvoidOverlap(index);
+  zone.style.transform = `translate(${x}px, ${y}px)`;
+  tapZonesPositions[index] = { x, y };
+}
+
+for (let i = 0; i < numZones; i++) {
+  const zone = document.createElement('div');
+  zone.classList.add('tap-zone');
+  zone.textContent = `SMASH ME!`;
+  zone.style.position = 'absolute';
+  zone.style.width = `${zoneSize}px`;
+  zone.style.height = `${zoneSize}px`;
+  zone.style.display = 'none';
+
+  tapZones.push(zone);
+  tapZonesContainer.appendChild(zone);
+  tapZonesPositions.push(null);
+
+  zone.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    if (!gameActive) return;
+    onTouchSmash();
+    moveZone(zone, i);
+  });
+}
+
