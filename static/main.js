@@ -97,6 +97,7 @@ function startGame() {
   startBtn.style.display = 'none';
   clearHighScoreBtn.style.display = 'none';
   endImage.style.display = 'none';
+  copyChallengeBtn.style.display = 'none';
 
   if (timerId) clearInterval(timerId);
   timerId = setInterval(updateTimer, 50);
