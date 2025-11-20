@@ -245,3 +245,8 @@ h1 {
   display: block;
   margin-top: 0.3em;
 }
+
+/* For your tap zones container or the whole body */
+#tapZonesContainer, body {
+  touch-action: manipulation;
+}
